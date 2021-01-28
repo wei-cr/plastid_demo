@@ -22,14 +22,13 @@ while (<IN>){
     if (/^#CHROM/){
         s/#//;
 	@a=split /\t/,$_;
-	foreach (0 .. $#a){
-	    if($a[$_] !~ /ID|QUAL|FILTER|INFO|FORMAT/){
+	print "$a[0]\t$a[1]\t$a[3]\t$a[4]\t";
+	foreach (9 .. $#a){
 		if ($_!=$#a){
 		    print "$a[$_]\t";
 		}else {
 		    print "$a[$_]\n";
 		}
-	    }
 	}
     }else {
         @a=split /\t/,$_; 
@@ -40,7 +39,7 @@ while (<IN>){
                     if ($m=~/\d/){
                         push(@b,$m);
                     }else {
-			push(@b,"NA");
+			push(@b,"");
 		    }                              
                 }
             print "$a[0]\t$a[1]\t$a[3]\t$a[4]";
@@ -74,7 +73,7 @@ sub f2{
     foreach  $index (9 .. $#_){
 	my $x = (split (/:/,$_[$index]))[2];
 	if ($x !~ /,/){
-	    push (@c,"NA");
+	    push (@c,"");
 	}else {
 	    @d = split /,/,$x;
 	    if ($d[0] =~ /\d/){
@@ -93,7 +92,7 @@ sub f3{
      foreach  $index (9 .. $#_){
 	 my $x = (split (/:/,$_[$index]))[2];
 	 if ($x !~ /,/){
-	     push (@c,"NA");
+	     push (@c,"");
 	 }else {
 	     @d = split /,/,$x;
 	     if ($d[0] =~ /\d/){
